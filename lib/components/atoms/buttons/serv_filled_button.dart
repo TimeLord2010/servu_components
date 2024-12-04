@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../../../theme/colors.dart';
 import '../serv_progress_indicator.dart';
@@ -50,15 +49,22 @@ class ServFilledButton extends StatelessWidget {
         if (isLoading) return;
         if (onPressed != null) await onPressed!();
       },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        padding: _padding,
-        decoration: BoxDecoration(
-          color: onPressed == null ? backgroundColor?.withOpacity(0.5) : backgroundColor,
-          shape: BoxShape.rectangle,
-          borderRadius: _borderRadius,
+      child: DefaultTextStyle(
+        style: const TextStyle(
+          color: Color.fromARGB(255, 255, 255, 255),
         ),
-        child: _child,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          padding: _padding,
+          decoration: BoxDecoration(
+            color: onPressed == null
+                ? backgroundColor?.withOpacity(0.5)
+                : backgroundColor,
+            shape: BoxShape.rectangle,
+            borderRadius: _borderRadius,
+          ),
+          child: _child,
+        ),
       ),
     );
   }
